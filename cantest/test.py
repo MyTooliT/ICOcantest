@@ -3,6 +3,7 @@
 # -- Imports ------------------------------------------------------------------
 
 from asyncio import run
+from logging import basicConfig, getLogger, INFO
 from sys import stderr
 
 from mytoolit.can import Network, NetworkError
@@ -11,15 +12,21 @@ from mytoolit.can import Network, NetworkError
 
 
 async def test():
-    print("Try to connect to CAN device")
+    basicConfig(
+        level=INFO, style="{", format="{asctime} {levelname:7} {message}"
+    )
+
+    logger = getLogger(__name__)
+
+    logger.info("Try to connect to CAN device")
     try:
         async with Network() as network:
-            print("Connected to CAN bus")
+            logger.info("Connected to CAN bus")
 
             node = "STU 1"
-            print(f"Reset “{node}”")
+            logger.info(f"Reset “{node}”")
             await network.reset_node(node)
-            print(f"Success 🥳")
+            logger.info(f"Success 🥳")
     except NetworkError as error:
         print(f"\nCAN communication failed: {error}", file=stderr)
 
