@@ -3,21 +3,25 @@
 # -- Imports ------------------------------------------------------------------
 
 from asyncio import run
+from sys import stderr
 
-from mytoolit.can import Network
+from mytoolit.can import Network, NetworkError
 
 # -- Functions ----------------------------------------------------------------
 
 
 async def test():
     print("Try to connect to CAN device")
-    async with Network() as network:
-        print("Connected to CAN bus")
+    try:
+        async with Network() as network:
+            print("Connected to CAN bus")
 
-        node = "STU 1"
-        print(f"Reset “{node}”")
-        await network.reset_node(node)
-        print(f"Success 🥳")
+            node = "STU 1"
+            print(f"Reset “{node}”")
+            await network.reset_node(node)
+            print(f"Success 🥳")
+    except NetworkError as error:
+        print(f"\nCAN communication failed: {error}", file=stderr)
 
 
 # -- Main ---------------------------------------------------------------------
