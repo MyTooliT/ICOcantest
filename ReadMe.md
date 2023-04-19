@@ -4,6 +4,15 @@
 
 Script and [`Dockerfile`](Dockerfile) to test basic CAN communication with the ICOtronic system. Please note, that the Docker container **requires a Linux host**, since we need a way to “connect” the CAN adapter to the Docker container.
 
+## Requirements
+
+- [Hardware](https://mytoolit.github.io/ICOc/#hardware):
+  - Peak CAN adapter
+  - Power Injector
+  - Stationary Transceiver Unit (STU)
+- Software:
+  - [Docker](https://www.docker.com) (Linux host)
+
 ## Docker
 
 ### Build
