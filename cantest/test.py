@@ -11,7 +11,16 @@ from mytoolit.can import Network, NetworkError
 # -- Functions ----------------------------------------------------------------
 
 
-async def test():
+async def test() -> int:
+    """Connect computer to STU
+
+    Returns
+    -------
+
+    `0` if everything worked as expected, `1` otherwise
+
+    """
+
     basicConfig(
         level=INFO, style="{", format="{asctime} {levelname:7} {message}"
     )
@@ -29,9 +38,12 @@ async def test():
             logger.info(f"Success 🥳")
     except NetworkError as error:
         print(f"\nCAN communication failed: {error}", file=stderr)
+        return 1
+
+    return 0
 
 
 # -- Main ---------------------------------------------------------------------
 
 if __name__ == "__main__":
-    run(test())
+    exit(run(test()))
