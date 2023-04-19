@@ -2,7 +2,7 @@
 
 ## Description
 
-Script and [`Dockerfile`](Dockerfile) to test basic CAN communication with the ICOtronic system.
+Script and [`Dockerfile`](Dockerfile) to test basic CAN communication with the ICOtronic system. Please note, that the Docker container **requires a Linux host**, since we need a way to “connect” the CAN adapter to the Docker container.
 
 ## Docker
 
