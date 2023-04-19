@@ -14,4 +14,6 @@ ENV PATH="$VIRTUAL_ENV/bin":"$PATH"
 RUN git clone https://github.com/MyTooliT/ICOc.git /icoc && \
     pip3 install /icoc
 
+COPY cantest /cantest
+
 ENTRYPOINT ["bash"]
