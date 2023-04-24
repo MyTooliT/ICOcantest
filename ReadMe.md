@@ -22,7 +22,7 @@ Script and [`Dockerfile`](Dockerfile) to test basic CAN communication with the I
 Please run the following command in the root of the repository:
 
 ```sh
-docker build -t icocantester .
+docker build -t icocantest .
 ```
 
 ### Run
@@ -37,7 +37,7 @@ Below we will describe two different options to “connect” the CAN adapter to
 1. Run Docker container:
 
    ```sh
-   docker run --network host -it --name icocantester icocantester
+   docker run --rm --network host -it --name icocantest icocantest
    ```
 
 2. Run script inside Docker container:
@@ -51,13 +51,13 @@ Below we will describe two different options to “connect” the CAN adapter to
 1. Run Docker container:
 
    ```sh
-   docker run -itd --name icocantester icocantester
+   docker run -itd --name icocantest icocantest
    ```
 
 2. Map CAN adapter into Docker container
 
    ```sh
-   export DOCKERPID="$(docker inspect -f '{{ .State.Pid }}' icocantester)"
+   export DOCKERPID="$(docker inspect -f '{{ .State.Pid }}' icocantest)"
    sudo ip link set can0 netns "$DOCKERPID"
    sudo nsenter -t "$DOCKERPID" -n ip link set can0 type can bitrate 1000000
    sudo nsenter -t "$DOCKERPID" -n ip link set can0 up
@@ -66,5 +66,5 @@ Below we will describe two different options to “connect” the CAN adapter to
 3. Execute script:
 
    ```
-   docker exec icocantester python cantest/test.py
+   docker exec icocantest python cantest/test.py
    ```
