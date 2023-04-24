@@ -51,7 +51,7 @@ Below we will describe two different options to “connect” the CAN adapter to
 1. Run Docker container:
 
    ```sh
-   docker run -itd --name icocantest icocantest
+   docker run -itd --rm --name icocantest icocantest
    ```
 
 2. Map CAN adapter into Docker container
@@ -65,6 +65,12 @@ Below we will describe two different options to “connect” the CAN adapter to
 
 3. Execute script:
 
-   ```
+   ```sh
    docker exec icocantest python cantest/test.py
+   ```
+
+4. Cleanup:
+
+   ```sh
+   docker stop icocantest
    ```
